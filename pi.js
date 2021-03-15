@@ -26,9 +26,10 @@ const animateSequence = () => {
         const new_color = "#b5626a";
         setTimeout(() => {
             dom_buttons[char].style.backgroundColor = new_color;
+            updateDisplayText(char);
         }, ((i+1)*animation_interval));
         setTimeout(() => { 
-            if (i === counter-1) { keys_enabled = true; dom_button_start.style.backgroundColor = "#ffb921"; }
+            if (i === counter-1) { keys_enabled = true; resetDisplayText(); dom_button_start.style.backgroundColor = "#ffb921"; }
             dom_buttons[char].style.backgroundColor = original_color;
         }, ((i+2)*animation_interval));
     }
@@ -118,6 +119,10 @@ const updateScores = (increment=1) => {
     dom_scoreboard.innerHTML = high_score;
 }
 
+const updateDisplayText = (char="") => {
+    dom_display_text.innerHTML = dom_display_text.innerHTML === "0" ? char : `${dom_display_text.innerHTML}${char}`;
+}
+
 const resetScores = () => {
     curr_score = 0;
     updateScores(0);
@@ -144,7 +149,7 @@ const onNumpadClicked = (e) => {
         if (pi[index] == button.value) {
             if (button.value != ".") updateScores();
             index++;
-            dom_display_text.innerHTML = dom_display_text.innerHTML === "0" ? button.value : `${dom_display_text.innerHTML}${button.value}`;
+            updateDisplayText(button.value);
             if (!free_play && index === counter) {
                 index = 0;
                 counter++;

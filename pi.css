@@ -30,7 +30,7 @@ body {
 }
 
 .calculator .display-wrapper .display .display-text {
-    direction: rtl;
+    float: right;
 }
 
 .calculator .row {

@@ -133,7 +133,7 @@ const resetDisplayText = () => {
 }
 
 const resetGameStatus = () => {
-    counter = starting_counter;
+    counter = starting_counter + 1;
     index = 0;
     if (!free_play) {
         keys_enabled = false;
@@ -164,7 +164,6 @@ const onNumpadClicked = (e) => {
 }
 
 const onStartClicked = (e) => {
-    counter = starting_counter + 1;
     if (free_play) {
         keys_enabled = true;
         dom_button_start.style.backgroundColor = "#ffb921";
@@ -184,6 +183,7 @@ const setButtonHandlers = () => {
 const initializeGame = () => {
     getDOMElements();
     setButtonHandlers();
+    resetGameStatus();
 }
 
 window.onload = initializeGame;
